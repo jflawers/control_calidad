@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "sistema_referencia": "EPSG:9377 (MAGNA-SIRGAS 2018 Origen Nacional)",
+  "tolerancias": {
+    "fuera_lote_m": 1.0,
+    "area_fuera_lote_m2_minima": 0.01,
+    "area_lote": "redondeo entero, sin tolerancia (floor(x + 0.5))"
+  },
+  "campos_shapefile": {
+    "lote": { "cbml": "cbml", "area_lote": "area_lote", "area_geom": "shape_Area" },
+    "construccion": { "tipo": "tipo_const", "pisos": "numero_pis", "id": "id_constru" },
+    "uconstruccion": {
+      "identificador": "identifica",
+      "id_predio": "id_predio",
+      "tipo_iep": "tipo_iep",
+      "planta": "planta_ubi",
+      "uso": "uso",
+      "tipo_unidad": "tipo_unida",
+      "total_pisos": "total_piso",
+      "area": "area_const"
+    }
+  },
+  "codigos_tipo_construccion_validos": ["N", "E", "BQ", "TO", "PQ", "M", "T", "P", "Q", "CA", "C", "ZC", "FL", "TB", "CD", "B", "AL"],
+  "significado_codigos": { "B": "balcon", "AL": "area libre", "FL": "balcon fuera de lote", "N": "normal" },
+  "usos_residenciales_vivienda": ["11", "12"],
+  "uso_ramada": "93",
+  "ramada_cuenta_como_nivel": true,
+  "ramada_cuenta_para_uso": false,
+  "nota": "Valores configurables. Las reglas de validación del sistema SERAG no se copian aquí; este archivo solo cubre la comparación plano vs edición."
+}

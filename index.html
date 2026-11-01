@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QA Catastral - Revisión asistida</title>
+<style>
+  :root { color-scheme: light dark; --bg:#f6f7f9; --fg:#1b1f24; --card:#fff; --line:#d8dde3;
+          --ok:#1e8e3e; --err:#c5221f; --rev:#b06000; --pend:#5f6368; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16181c; --fg:#e8eaed; --card:#202428; --line:#3c4248; } }
+  body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 16px; }
+  h1 { font-size: 20px; margin: 0 0 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+  label { display: block; font-weight: 600; margin: 8px 0 4px; }
+  input[type=file] { margin-bottom: 4px; }
+  button { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; margin: 2px; }
+  button.primary { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td, th { border-bottom: 1px solid var(--line); padding: 6px 4px; text-align: left; vertical-align: top; }
+  .estado { font-weight: 700; white-space: nowrap; }
+  .OK { color: var(--ok); } .ERROR { color: var(--err); } .REVISAR { color: var(--rev); } .PENDIENTE { color: var(--pend); }
+  .small { font-size: 12px; opacity: .8; }
+  #resumen span { margin-right: 14px; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>QA Catastral: revisión asistida de trámite</h1>
+
+<div class="card">
+  <label>1. Planos aportados (PDF, con texto seleccionable)</label>
+  <input type="file" id="fPlanos" accept="application/pdf" multiple>
+  <label>2. Geometría de edición (ZIP con shapefiles de lote, construccion y uconstruccion_ladm, EPSG 9377)</label>
+  <input type="file" id="fShp" accept=".zip">
+  <div style="margin-top:10px"><button class="primary" id="btnRevisar">Revisar trámite</button>
+  <button id="btnExportar" disabled>Exportar registro (JSON)</button></div>
+  <p class="small">Todo se procesa en su navegador. Ningún archivo se envía a un servidor.</p>
+</div>
+
+<div class="card" id="resumen"></div>
+<div class="card"><table id="tabla"><thead><tr><th>Estado</th><th>Verificación</th><th>Detalle / pregunta</th><th>Respuesta del operador</th></tr></thead><tbody></tbody></table></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/shpjs@4.0.4/dist/shp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/polygon-clipping@0.15.7/dist/polygon-clipping.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
